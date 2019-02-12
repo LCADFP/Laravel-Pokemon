@@ -24,7 +24,7 @@ class maestroscontroller extends Controller
      */
     public function create()
     {
-        //
+        return view('maestros.crearmaestro');
     }
 
     /**
