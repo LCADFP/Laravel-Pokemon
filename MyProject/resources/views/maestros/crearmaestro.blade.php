@@ -5,14 +5,15 @@
 @section('content')
 
 
-    <div class="form-group">
-        <form action="">
-            <label for="">Nombre</label>
-            <input class="form-control" type="text" name="nombre">
-        </form>
-    </div>
-    <button class="btn btn-danger" type="submit">Guardar</button>
-
+    
+        <form class="form-group" method="POST" action="/maestros">
+            @csrf
+            <div class="form-group">
+                <label for="">Nombre</label>
+                <input class="form-control" type="text" name="nombre">
+            </div>
+          <button class="btn btn-danger" type="submit">Guardar</button>
+        </form>    
 
 @endsection
 

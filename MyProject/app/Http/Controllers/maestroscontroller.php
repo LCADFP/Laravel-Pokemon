@@ -35,7 +35,8 @@ class maestroscontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+       // return $request->all(); //para obtener todos los datos
+        return $request->input('nombre'); //nos permite elegir el dato que necesitemos.
     }
 
     /**
