@@ -37,11 +37,13 @@ class maestroscontroller extends Controller
      */
     public function store(Request $request)
     {
-       // return $request->all(); //para obtener todos los datos
-        $maestro= new Maestro(); //instanciamos la variable maestro con nuestro modelo Maestro.
+        return $request;
+     
+        // return $request->all(); //para obtener todos los datos
+       /* $maestro= new Maestro(); //instanciamos la variable maestro con nuestro modelo Maestro.
         $maestro->nombre = $request->input('nombre');
         $maestro->save();
-        return 'maestro guardado';
+        return 'maestro guardado';*/
         //return $request->input('nombre'); //nos permite elegir el dato que necesitemos.
     }
 
