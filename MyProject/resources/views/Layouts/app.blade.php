@@ -5,6 +5,9 @@
     <title>Pokemon - @yield('title')</title>
 </head>
 <body>
+    <na class="navbar navbar-dark bg-primary">
+        <a href="#" class="navbar-brand">Pokemon</a>
+    </na>
     <div class="container">
         @yield('content')
     </div>

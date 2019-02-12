@@ -2,6 +2,7 @@
 
 namespace pokemon\Http\Controllers;
 
+use pokemon\Maestro;
 use Illuminate\Http\Request;
 
 class maestroscontroller extends Controller
@@ -13,7 +14,8 @@ class maestroscontroller extends Controller
      */
     public function index()
     {
-        return "Hola desde el controlador maestros Pokemon";
+        $maestros = Maestro::all();
+        return view('maestros.indexmaestro', compact('maestros'));
         //
     }
 
@@ -36,7 +38,11 @@ class maestroscontroller extends Controller
     public function store(Request $request)
     {
        // return $request->all(); //para obtener todos los datos
-        return $request->input('nombre'); //nos permite elegir el dato que necesitemos.
+        $maestro= new Maestro(); //instanciamos la variable maestro con nuestro modelo Maestro.
+        $maestro->nombre = $request->input('nombre');
+        $maestro->save();
+        return 'maestro guardado';
+        //return $request->input('nombre'); //nos permite elegir el dato que necesitemos.
     }
 
     /**
