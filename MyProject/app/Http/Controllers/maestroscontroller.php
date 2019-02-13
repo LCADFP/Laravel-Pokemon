@@ -37,13 +37,21 @@ class maestroscontroller extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        
+        if($request->hasFile('foto')){
+            $file = $request->file('foto');
+            $nombre = time().$file->getClientOriginalName();
+            $file->move(public_path().'/imagenes/', $nombre);
+            
+        }
+       // return $request; con esto vemos que informacion esta tomando.
      
         // return $request->all(); //para obtener todos los datos
-       /* $maestro= new Maestro(); //instanciamos la variable maestro con nuestro modelo Maestro.
+        $maestro= new Maestro(); //instanciamos la variable maestro con nuestro modelo Maestro.
         $maestro->nombre = $request->input('nombre');
+        $maestro->foto = $nombre;
         $maestro->save();
-        return 'maestro guardado';*/
+        return 'maestro guardado';
         //return $request->input('nombre'); //nos permite elegir el dato que necesitemos.
     }
 
