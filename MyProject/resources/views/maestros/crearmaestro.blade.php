@@ -14,6 +14,11 @@
             </div>
 
             <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" rows="5" name="descripcion"></textarea>
+            </div>
+
+            <div class="form-group">
                 <label for="">Foto</label>
                 <input class="form-control-file" type="file" name="foto">
             </div>

@@ -38,22 +38,24 @@ class maestroscontroller extends Controller
     public function store(Request $request)
     {
         
-        if($request->hasFile('foto')){
+       if($request->hasFile('foto')){
             $file = $request->file('foto');
             $nombre = time().$file->getClientOriginalName();
             $file->move(public_path().'/imagenes/', $nombre);
             
         }
-       // return $request; con esto vemos que informacion esta tomando.
+        //return $request; con esto vemos que informacion esta tomando.
      
         // return $request->all(); //para obtener todos los datos
-        $maestro= new Maestro(); //instanciamos la variable maestro con nuestro modelo Maestro.
+       $maestro= new Maestro(); //instanciamos la variable maestro con nuestro modelo Maestro.
         $maestro->nombre = $request->input('nombre');
+        $maestro->descripcion = $request->input('descripcion');
         $maestro->foto = $nombre;
         $maestro->save();
         return 'maestro guardado';
         //return $request->input('nombre'); //nos permite elegir el dato que necesitemos.
     }
+
 
     /**
      * Display the specified resource.
@@ -61,9 +63,12 @@ class maestroscontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)  //recibimos el modelo, y vmaos a utilizar la variable $maestro
     {
-        //
+       
+        //$maestro = Maestro::find($id);
+       $maestro = Maestro::where("slug","=","$slug")->firstOrFail(); 
+       return view ('maestros.showmaestros', compact('maestro'));  //con compact le decimos comparta la informacion con nuestras vistas. le damos el nombre de nuestra variable en este caso es $maestro.
     }
 
     /**
