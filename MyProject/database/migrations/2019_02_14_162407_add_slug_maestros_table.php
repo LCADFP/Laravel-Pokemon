@@ -14,7 +14,7 @@ class AddSlugMaestrosTable extends Migration
     public function up()
     {
         Schema::table('maestros', function (Blueprint $table) {
-            $table->string('slug')->unique();
+            $table->string('slug')->unique()->nullable($value=true);
         });
     }
 

@@ -8,5 +8,8 @@
       
         <h5 class="card-title">{{ $maestro-> nombre }}</h5>
         <p class="card-text">{{ $maestro-> descripcion }}</p>
+        <a href="/maestros/{{ $maestro-> slug }}/edit" class="btn btn-primary">Editar</a>
+        
     </div>
+    
 @endsection

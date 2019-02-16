@@ -63,11 +63,11 @@ class maestroscontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)  //recibimos el modelo, y vmaos a utilizar la variable $maestro
+    public function show(Maestro $maestro)  //recibimos el modelo, y vmaos a utilizar la variable $maestro
     {
        
         //$maestro = Maestro::find($id);
-       $maestro = Maestro::where("slug","=","$slug")->firstOrFail(); 
+      // $maestro = Maestro::where("slug","=","$slug")->firstOrFail(); 
        return view ('maestros.showmaestros', compact('maestro'));  //con compact le decimos comparta la informacion con nuestras vistas. le damos el nombre de nuestra variable en este caso es $maestro.
     }
 
@@ -77,9 +77,9 @@ class maestroscontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Maestro $maestro)
     {
-        //
+        return view ('maestros.editmaestro', compact('maestro'));
     }
 
     /**
@@ -89,9 +89,20 @@ class maestroscontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Maestro $maestro)
     {
-        //
+
+        //return $request; //me permite ver los datos que esta tomando para actualizarlos en la BD
+        $maestro->fill($request->except('foto'));
+        if($request->hasFile('foto')){
+            $file = $request->file('foto');
+            $nombre = time().$file->getClientOriginalName();
+            $maestro->foto = $nombre;
+            $file->move(public_path().'/imagenes/', $nombre);
+            
+        }
+        $maestro->save();
+        return 'Datos actualizados correctamente';
     }
 
     /**
