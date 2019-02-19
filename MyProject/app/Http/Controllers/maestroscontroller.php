@@ -50,6 +50,7 @@ class maestroscontroller extends Controller
        $maestro= new Maestro(); //instanciamos la variable maestro con nuestro modelo Maestro.
         $maestro->nombre = $request->input('nombre');
         $maestro->descripcion = $request->input('descripcion');
+        $maestro->slug = $request->input('slug');
         $maestro->foto = $nombre;
         $maestro->save();
         return 'maestro guardado';
