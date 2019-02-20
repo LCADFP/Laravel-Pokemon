@@ -174,7 +174,7 @@ return [
         // pokemon\Providers\BroadcastServiceProvider::class,
         pokemon\Providers\EventServiceProvider::class,
         pokemon\Providers\RouteServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
+        
 
     ],
 
