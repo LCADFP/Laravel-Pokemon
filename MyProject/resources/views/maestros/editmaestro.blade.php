@@ -29,6 +29,7 @@
               <input class="form-control-file" type="file" name="foto">
           </div>
           <button class="btn btn-danger" type="submit">Guardar</button>
+          
         </form>    
 
 @endsection

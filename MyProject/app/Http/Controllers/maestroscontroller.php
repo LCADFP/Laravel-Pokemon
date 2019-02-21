@@ -4,6 +4,7 @@ namespace pokemon\Http\Controllers;
 
 use pokemon\Maestro;
 use Illuminate\Http\Request;
+use pokemon\Http\Requests\storemaestrorequest;
 
 class maestroscontroller extends Controller
 {
@@ -35,9 +36,9 @@ class maestroscontroller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(storemaestrorequest $request)
     {
-        
+                
        if($request->hasFile('foto')){
             $file = $request->file('foto');
             $nombre = time().$file->getClientOriginalName();
@@ -53,7 +54,9 @@ class maestroscontroller extends Controller
         $maestro->slug = $request->input('slug');
         $maestro->foto = $nombre;
         $maestro->save();
-        return 'maestro guardado';
+
+        return redirect()->route('maestros.index');
+        //return 'maestro guardado';
         //return $request->input('nombre'); //nos permite elegir el dato que necesitemos.
     }
 
@@ -103,7 +106,7 @@ class maestroscontroller extends Controller
             
         }
         $maestro->save();
-        return 'Datos actualizados correctamente';
+        return redirect()->route('maestros.show', [$maestro]);
     }
 
     /**
@@ -112,8 +115,12 @@ class maestroscontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Maestro $maestro)
     {
-        //
+        //return $maestro;
+        $eliminafoto = public_path().'/imagenes/'.$maestro->foto;
+        \File::delete($eliminafoto); 
+        $maestro->delete();
+        return redirect()->route('maestros.index');
     }
 }

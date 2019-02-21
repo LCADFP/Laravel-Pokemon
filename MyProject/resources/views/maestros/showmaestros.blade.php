@@ -10,6 +10,13 @@
         <p class="card-text">{{ $maestro-> descripcion }}</p>
         <a href="/maestros/{{ $maestro-> slug }}/edit" class="btn btn-primary">Editar</a>
         
+        
     </div>
-    
+    <div class="text-center">
+        <form class="form-group" method="POST" action="/maestros/{{ $maestro-> slug }}" >
+            @method('DELETE')
+            @csrf
+        <button style="margin-top:10px;" class="btn btn-danger" type="submit">Eliminar</button>
+        </form> 
+    </div>
 @endsection
