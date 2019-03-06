@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 
 Route::resource('maestros', 'maestrosController');
+Route::resource('pokemons', 'pokemonController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
