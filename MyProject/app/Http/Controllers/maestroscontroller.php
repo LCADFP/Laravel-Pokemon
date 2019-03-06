@@ -55,7 +55,7 @@ class maestroscontroller extends Controller
         $maestro->foto = $nombre;
         $maestro->save();
 
-        return redirect()->route('maestros.index');
+        return redirect()->route('maestros.index')->with('estado', 'Maestro creado corerctamente');
         //return 'maestro guardado';
         //return $request->input('nombre'); //nos permite elegir el dato que necesitemos.
     }
@@ -106,7 +106,7 @@ class maestroscontroller extends Controller
             
         }
         $maestro->save();
-        return redirect()->route('maestros.show', [$maestro]);
+        return redirect()->route('maestros.show', [$maestro])->with('estado', 'Maestro actualizado corerctamente');
     }
 
     /**
@@ -121,6 +121,7 @@ class maestroscontroller extends Controller
         $eliminafoto = public_path().'/imagenes/'.$maestro->foto;
         \File::delete($eliminafoto); 
         $maestro->delete();
-        return redirect()->route('maestros.index');
+        return redirect()->route('maestros.index')->with('estado', 'Maestro eliminado');
     }
+    
 }
