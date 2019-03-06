@@ -6,6 +6,8 @@ use pokemon\Maestro;
 use Illuminate\Http\Request;
 use pokemon\Http\Requests\storemaestrorequest;
 
+
+
 class maestroscontroller extends Controller
 {
     /**
@@ -13,8 +15,11 @@ class maestroscontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['admin','usuario']);
+
+
         $maestros = Maestro::all();
         return view('maestros.indexmaestro', compact('maestros'));
         //
