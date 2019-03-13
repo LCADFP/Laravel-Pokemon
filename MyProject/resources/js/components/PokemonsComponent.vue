@@ -29,7 +29,7 @@
             axios
                 .get('http://localhost:8000/pokemons')
                 .then((res) => {
-                    this.pokemons = response.data
+                    this.pokemons = res.data
                     this.loading = false
                 })
                 
